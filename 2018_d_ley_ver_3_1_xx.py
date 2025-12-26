@@ -23,7 +23,7 @@
 import time
 
 start_pr = time.time()
-print(start_pr)
+print("start:", start_pr)
 
 file = open('input.txt', 'r')
 N = int(file.readline())
@@ -66,6 +66,8 @@ for key, item in orders_dict.items():
     orders_dict[key]['sum_time'] = sum_time
     orders_list[key] = key
 
+print("medium:", time.time())
+
 Q = int(file.readline())
 for j in range(Q):
     ask_start, ask_end, ask_type = map(int, file.readline().strip().split())
@@ -75,11 +77,13 @@ for j in range(Q):
     search_min = search_max = i = 0
     s_min = s_max = False
     while i < len(orders_list_slice):
-        if not s_min and orders_list_slice[i]:
-            search_min = orders_list_slice[i]
+        orders_l_s = orders_list_slice[i]
+        if not s_min and orders_l_s:
+            search_min = orders_l_s
             s_min = True
-        if not s_max and orders_list_slice[len(orders_list_slice) - 1 - i]:
-            search_max = orders_list_slice[len(orders_list_slice) - 1 - i]
+        orders_l_s = orders_list_slice[len(orders_list_slice) - 1 - i]
+        if not s_max and orders_l_s:
+            search_max = orders_l_s
             s_max = True
         if s_min and s_max:
             break
@@ -96,5 +100,5 @@ with open('output.txt', 'w+') as file:
     file.write(' '.join(result_list))
 
 stop_pr = time.time()
-print(stop_pr)
-print(stop_pr - start_pr)
+print("stop:", stop_pr)
+print("result:", stop_pr - start_pr)

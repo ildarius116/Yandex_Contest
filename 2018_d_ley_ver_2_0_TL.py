@@ -20,13 +20,22 @@
 
 
 """
+import time
+
+start_pr = time.time()
+print("start:", start_pr)
+
+file = open('input.txt', 'r')
+N = int(file.readline())
+
 result_list = []
-N = int(input())
+# N = int(input())
 orders_dict = {0: {'cur_sum_cost': 0, 'cur_sum_time': 0}}
 orders_events = []
 max_event_time = 0
 for i in range(N):
-    order_start, order_end, order_cost = map(int, input().split())
+    # order_start, order_end, order_cost = map(int, input().split())
+    order_start, order_end, order_cost = map(int, file.readline().strip().split())
     max_event_time = max(max_event_time, order_end)
     orders_events.append((order_start, order_end, -1, order_cost))
     orders_events.append((order_start, order_end, 1, order_cost))
@@ -42,9 +51,12 @@ for event_time_st, event_time_end, ask_type, order_cost in orders_events:
             orders_dict[event_time_end] = {'cur_sum_cost': 0, 'cur_sum_time': 0}
         orders_dict[event_time_end]['cur_sum_time'] += event_time_end - event_time_st
 
-Q = int(input())
+print("medium:", time.time())
+# Q = int(input())
+Q = int(file.readline())
 for _ in range(Q):
-    ask_start, ask_end, ask_type = map(int, input().split())
+    # ask_start, ask_end, ask_type = map(int, input().split())
+    ask_start, ask_end, ask_type = map(int, file.readline().strip().split())
     summary = 0
     if ask_type == 1:
         i = ask_start
@@ -61,4 +73,8 @@ for _ in range(Q):
                 summary += orders_data['cur_sum_time']
             i += 1
     result_list.append(str(summary))
-print(' '.join(result_list))
+# print(' '.join(result_list))
+
+stop_pr = time.time()
+print("stop:", stop_pr)
+print("result:", stop_pr - start_pr)

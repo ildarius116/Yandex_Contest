@@ -133,17 +133,31 @@ Python 3.12.3	10 секунд	512Mb
 Последний, шестой запрос затрагивает запросы 4, 5, 6 и 7 — их суммарная продолжительность равна (10−4)+(11−4)+(8−3)+(8−4)=6+7+5+4= 22.
 
 """
+import time
+
+start_pr = time.time()
+print("start:", start_pr)
+
+file = open('input.txt', 'r')
+N = int(file.readline())
+
 result_list = []
-N = int(input())
+# N = int(input())
 order_events = []
 for i in range(N):
-    order_start, order_end, order_cost = map(int, input().split())
+    # order_start, order_end, order_cost = map(int, input().split())
+    order_start, order_end, order_cost = map(int, file.readline().strip().split())
     order_events.append((order_start, order_end, order_cost))
 order_events = tuple(order_events)
-Q = int(input())
+
+print("medium:", time.time())
+
+Q = int(file.readline())
+# Q = int(input())
 ask_events = []
 for j in range(Q):
-    ask_start, ask_end, ask_type = map(int, input().split())
+    # ask_start, ask_end, ask_type = map(int, input().split())
+    ask_start, ask_end, ask_type = map(int, file.readline().strip().split())
     sum_cost = sum_time = 0
     for i in range(N):
         order_start, order_end, order_cost = order_events[i]
@@ -156,4 +170,8 @@ for j in range(Q):
     elif ask_type == 2:
         result_list.append(str(sum_time))
 
-print(' '.join(result_list))
+# print(' '.join(result_list))
+
+stop_pr = time.time()
+print("stop:", stop_pr)
+print("result:", stop_pr - start_pr)

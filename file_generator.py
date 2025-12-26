@@ -12,8 +12,8 @@ with open('input.txt', 'w+') as file:
     file.write('\n')
     for _ in range(N):
         while True:
-            start = random.randrange(1, 1000)
-            end = random.randrange(1, 1000)
+            start = random.randrange(1, 100_000_000)
+            end = random.randrange(1, 100_000_000)
             if start < end:
                 break
         cost = random.randrange(1, 1000)
