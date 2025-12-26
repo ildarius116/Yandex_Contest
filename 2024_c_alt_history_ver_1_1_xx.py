@@ -42,29 +42,38 @@ C. Альтернативная история
 Вывод
 2
 
+Пример 3
+Ввод
+7
+7 4 1 2 3 6 5
+7 1 3 4 1 5 5
+4 6 5 2 1 7 3
+Вывод
+4
+
 Примечания
 В первом примере необходимо удалить информацию за 1, 2, 4 и 6 годы (при нумерации с единицы). Тогда в каждой цивилизации останется множество событий [1,3,5][1,3,5]
 Во втором примере необходимо удалить информацию за 2 и 5 годы (при нумерации с единицы). Тогда в каждой цивилизации останется множество событий [1,2,3,5,6,7,9][1,2,3,5,6,7,9]
 
 """
-# file = open('input.txt', 'r')
-# N = int(file.readline())
-# civ_a = list(map(int, file.readline().strip().split()))
-# civ_b = list(map(int, file.readline().strip().split()))
-# civ_c = list(map(int, file.readline().strip().split()))
+file = open('input.txt', 'r')
+N = int(file.readline())
+civ_a = list(map(int, file.readline().strip().split()))
+civ_b = list(map(int, file.readline().strip().split()))
+civ_c = list(map(int, file.readline().strip().split()))
 # print(f"civ_a : {civ_a}")
 # print(f"civ_b : {civ_b}")
 # print(f"civ_c : {civ_c}")
 
-N = int(input())
-civ_a = list(map(int, input().split()))
-civ_b = list(map(int, input().split()))
-civ_c = list(map(int, input().split()))
+# N = int(input())
+# civ_a = list(map(int, input().split()))
+# civ_b = list(map(int, input().split()))
+# civ_c = list(map(int, input().split()))
 
 count = 0
 while True:
     inter_civ = set.intersection(set(civ_a), set(civ_b), set(civ_c), )
-    print(f"inter_civ : {inter_civ}")
+    # print(f"inter_civ : {inter_civ}")
     is_change = False
     for i in range(N):
         a, b, c = civ_a[i], civ_b[i], civ_c[i]
@@ -79,7 +88,7 @@ while True:
     if not is_change:
         break
 
-print(f"civ_a : {civ_a}")
-print(f"civ_b : {civ_b}")
-print(f"civ_c : {civ_c}")
+# print(f"civ_a : {civ_a}")
+# print(f"civ_b : {civ_b}")
+# print(f"civ_c : {civ_c}")
 print(f"count : {count}")
