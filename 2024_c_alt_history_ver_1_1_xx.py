@@ -47,26 +47,39 @@ C. Альтернативная история
 Во втором примере необходимо удалить информацию за 2 и 5 годы (при нумерации с единицы). Тогда в каждой цивилизации останется множество событий [1,2,3,5,6,7,9][1,2,3,5,6,7,9]
 
 """
-N = input()
-civ_a = sorted(list(map(int, input().split())))
-civ_b = sorted(list(map(int, input().split())))
-civ_c = sorted(list(map(int, input().split())))
-civs_list = [civ_a, civ_b, civ_c]
-civs_set_list = [set(civ_a), list(set(civ_b)), list(set(civ_c))]
-inter_civ = set.intersection(set(civ_a), set(civ_b), set(civ_c), )
-dif_civ_a = set(civ_a).difference(inter_civ)
+# file = open('input.txt', 'r')
+# N = int(file.readline())
+# civ_a = list(map(int, file.readline().strip().split()))
+# civ_b = list(map(int, file.readline().strip().split()))
+# civ_c = list(map(int, file.readline().strip().split()))
+# print(f"civ_a : {civ_a}")
+# print(f"civ_b : {civ_b}")
+# print(f"civ_c : {civ_c}")
 
-multy_event_list = []
-for event in set(civ_b):
-    qty = civ_b.count(event)
-    if qty > 1:
-        multy_event_list.append(event)
-for event in set(civ_c):
-    qty = civ_c.count(event)
-    if qty > 1:
-        multy_event_list.append(event)
-count = len(dif_civ_a)
-for event in multy_event_list:
-    if event not in dif_civ_a:
-        count += 1
-print(count)
+N = int(input())
+civ_a = list(map(int, input().split()))
+civ_b = list(map(int, input().split()))
+civ_c = list(map(int, input().split()))
+
+count = 0
+while True:
+    inter_civ = set.intersection(set(civ_a), set(civ_b), set(civ_c), )
+    print(f"inter_civ : {inter_civ}")
+    is_change = False
+    for i in range(N):
+        a, b, c = civ_a[i], civ_b[i], civ_c[i]
+        if a == 0 and b == 0 and c == 0:
+            pass
+        elif a in inter_civ and b in inter_civ and c in inter_civ:
+            pass
+        else:
+            civ_a[i] = civ_b[i] = civ_c[i] = 0
+            count += 1
+            is_change = True
+    if not is_change:
+        break
+
+print(f"civ_a : {civ_a}")
+print(f"civ_b : {civ_b}")
+print(f"civ_c : {civ_c}")
+print(f"count : {count}")
